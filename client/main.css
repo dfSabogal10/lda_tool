@@ -1,0 +1,34 @@
+/* CSS declarations go here */
+.radio-img > button.program {
+  width:30%;
+  padding-top:28%;
+  background-size: contain;
+  background-repeat:no-repeat;
+  background-color: white;
+  text-align:center;
+  opacity:0.5
+}
+
+.radio-img > button.program_sel {
+  opacity:1
+}
+
+.radio-img > button.type {
+  width:80%;
+  margin:auto;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
