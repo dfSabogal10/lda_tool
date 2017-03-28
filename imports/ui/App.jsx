@@ -3,7 +3,6 @@ import Select from 'react-select';
 import RadioImg from 'react-radioimg';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import {Layer, Rect, Stage, Group} from 'react-konva';
 import LDM from './ldm_graph'
 import Qualities from './leadership_qualities'
 import Equalizer from 'react-equalizer';
@@ -26,16 +25,25 @@ export default class App extends Component {
       lcs:{
         '1551': [
           { value: 1395, label: 'Andes'},
-          { value: 1000, label: 'Rosario'},
+          { value: 1877, label: 'TUNJA'},
+          { value: 1858, label: 'EXTERNADO'},
+          { value: 1479, label: 'UPB'},
+          { value: 428, label: 'Rosario'},
         ],
-        '1444': [
-          { value: 1555, label: 'IPM'},
-          { value: 1666, label: 'Tampico'},
+        '1589': [
+          { value: 1054, label: 'IPN'},
+          { value: 1865, label: 'Tampico'},
+          { value: 2134, label: 'Zacatecas'},
+          { value: 2063, label: 'Irapuato'},
+          { value: 2062, label: 'Celaya'},
+          { value: 1891, label: 'Cuernavaca'},
+          { value: 1866, label: 'Oaxaca'},
+          { value: 1790, label: 'ITESM Toluca'},
         ]
       },
       countries:[
         { value: 1551, label: 'Colombia'},
-        { value: 1444, label: 'México'},
+        { value: 1589, label: 'México'},
       ],
       programs:[
       {
