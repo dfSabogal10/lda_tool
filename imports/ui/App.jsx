@@ -3,6 +3,10 @@ import Select from 'react-select';
 import RadioImg from 'react-radioimg';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import {Layer, Rect, Stage, Group} from 'react-konva';
+import LDM from './ldm_graph'
+import Qualities from './leadership_qualities'
+import Equalizer from 'react-equalizer';
 
 var rb = require('react-bootstrap');
 
@@ -13,16 +17,25 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selected_quality:"SO",
       selected_lc:1395,
       selected_country:1551,
       selected_program:"GV",
-      lcs:[
-        { value: 1395, label: 'Andes' },
-        { value: 1000, label: 'Rosario' },
-      ],
+      start_date:moment(),
+      end_date:moment(),
+      lcs:{
+        '1551': [
+          { value: 1395, label: 'Andes'},
+          { value: 1000, label: 'Rosario'},
+        ],
+        '1444': [
+          { value: 1555, label: 'IPM'},
+          { value: 1666, label: 'Tampico'},
+        ]
+      },
       countries:[
-        { value: 1551, label: 'Colombia' },
-        { value: 1444, label: 'México' },
+        { value: 1551, label: 'Colombia'},
+        { value: 1444, label: 'México'},
       ],
       programs:[
       {
@@ -61,11 +74,6 @@ export default class App extends Component {
     };
   };
 
-  componentDidMount() {
-    window.load_canvas()
-  }
-
-
 
 
   updateLC(val) {
@@ -77,7 +85,8 @@ export default class App extends Component {
 
   updateCountry(val) {
     this.setState({
-      selected_country: val.value
+      selected_country: val.value,
+      selected_lc: null
     })
      console.log("Selected country: " + val["value"]);
   }
@@ -88,9 +97,15 @@ export default class App extends Component {
     this.setState(change);
   };
 
-  dateChanged(date) {
+  startDateChanged(date) {
+    console.log(date)
     this.setState({
-      startDate: date
+      start_date: date
+    });
+  };
+  endDateChanged(date) {
+    this.setState({
+      end_date: date
     });
   };
 
@@ -115,14 +130,14 @@ export default class App extends Component {
             <Select
               name="selected_lc"
               value={this.state.selected_lc}
-              options={this.state.lcs}
+              options={this.state.lcs[this.state.selected_country]}
               onChange={this.updateLC.bind(this)}
             />
           </rb.Nav>
           <rb.Nav style={{width:"20%"}}>
             <rb.FormControl
               type="text"
-              value={this.state.token}
+              value={this.state.auth_token}
               name="auth_token"
               onChange={this.handleChange.bind(this)}
               placeholder="Authentication Token"
@@ -130,38 +145,18 @@ export default class App extends Component {
           </rb.Nav>
         </rb.Navbar>
         <div className="container">
-          <header>
-            <h1>Todo List</h1>
-            <p>{this.state.auth_token}</p>
-            <p>{this.state.selected_program}</p>
-          </header>
+
         </div>
         <rb.Grid>
           <rb.Row>
-            <rb.Col sm={6} xs={12}>
-              <canvas id="ldm_canvas" width="243" height="279"></canvas>
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              v1 2
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 3
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 4
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 5
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 6
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 7
-            </rb.Col>
-            <rb.Col sm={3} xs={6}>
-              va 8
-            </rb.Col>
+            <Equalizer>
+              <rb.Col sm={6} xs={12} className="ldm-div">
+                <LDM setLeadershipQuality={(quality) => {this.setState({selected_quality: quality})}} />
+              </rb.Col>
+              <rb.Col sm={6} xs={12} className="flex-vertical-align">
+                <Qualities selected_quality={this.state.selected_quality}/>
+              </rb.Col>
+            </Equalizer>
           </rb.Row>
         </rb.Grid>
         <rb.Grid>
@@ -194,10 +189,43 @@ export default class App extends Component {
             </rb.Col>
             <rb.Col sm={3} xs={6}>
               <DatePicker
-                selected={this.state.startDate}
-                onChange={this.dateChanged.bind(this)}
+                selected={this.state.start_date}
+                onChange={this.startDateChanged.bind(this)}
                 dateFormat="YYYY-MM-DD"
               />
+            </rb.Col>
+            <rb.Col sm={3} xs={6}>
+              <DatePicker
+                selected={this.state.end_date}
+                onChange={this.endDateChanged.bind(this)}
+                dateFormat="YYYY-MM-DD"
+              />
+            </rb.Col>
+            <rb.Col xs={12}>
+              <table className="table table-responsive">
+                <thead>
+                  <tr>
+                    <td>Token</td>
+                    <td>Pais</td>
+                    <td>Comité</td>
+                    <td>Programa</td>
+                    <td>Tipo</td>
+                    <td>Fecha inicio</td>
+                    <td>Fecha fin</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{this.state.auth_token}</td>
+                    <td>{this.state.selected_country}</td>
+                    <td>{this.state.selected_lc}</td>
+                    <td>{this.state.selected_program}</td>
+                    <td>{this.state.selected_type}</td>
+                    <td>{this.state.start_date.format('YYYY-MM-DD')}</td>
+                    <td>{this.state.end_date.format('YYYY-MM-DD')}</td>
+                  </tr>
+                </tbody>
+              </table>
             </rb.Col>
           </rb.Row>
         </rb.Grid>

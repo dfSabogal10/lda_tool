@@ -6,6 +6,11 @@ function load_canvas () {
   var ctx = canvas.getContext("2d");
 
   draw(ctx);
+  canvas.addEventListener('click', function(event) {
+    if (event.region) {
+      console.log('hit region: ' + event.region);
+    }
+  })
 }
 
 function draw(ctx) {
@@ -31,6 +36,7 @@ function draw(ctx) {
   ctx.closePath();
   ctx.fillStyle = "rgb(149, 90, 164)";
   ctx.fill();
+  ctx.addHitRegion({id: 'SO'})
 
   // layer1/Solution Oriented/SO Picture
 
@@ -687,6 +693,7 @@ function draw(ctx) {
   ctx.closePath();
   ctx.fillStyle = "rgb(255, 200, 69)";
   ctx.fill();
+  ctx.addHitRegion({id: 'SA'})
 
   // layer1/Self Aware/SA Picture
 
@@ -1139,6 +1146,7 @@ function draw(ctx) {
   ctx.closePath();
   ctx.fillStyle = "rgb(241, 91, 66)";
   ctx.fill();
+  ctx.addHitRegion({id: 'EO'})
 
   // layer1/Empowering Others/EO Picture
 
@@ -2103,6 +2111,7 @@ function draw(ctx) {
   ctx.closePath();
   ctx.fillStyle = "rgb(38, 184, 153)";
   ctx.fill();
+  ctx.addHitRegion({id: 'WC'})
 
   // layer1/World Citizen/WC Picture
 

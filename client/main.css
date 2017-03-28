@@ -30,5 +30,67 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif !important;
 }
+
+.quality-div {
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  padding: 8% 10% 8% 5%;
+}
+
+.defining-element-div {
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  padding: 8% 10% 8% 10%;
+  height:100%;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+.defining-element-percentage {
+  font-weight: bold;
+  color: white;
+  font-size: 32px;
+  padding: 8% 10% 8% 10%;
+  height:100%;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+
+.flex-vertical-align {
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+
+.ldm-div {
+  padding: 5% 5% 5% 5%;
+}
+
+
+/* Estilo del LDM model, la imagen grande*/
+.cls-1{fill:#955ba5;}
+.cls-2{fill:#f7cb1a;}
+.cls-3{fill:#e9b820;}
+.cls-4{fill:#231f20;opacity:0.15;}
+.cls-5{opacity:0.4;fill:url(#linear-gradient);}
+.cls-6{fill:#fff;}
+.cls-7{fill:#ffc845;}
+.cls-8{fill:#346e7b;}
+.cls-9{fill:#e5f1fa;}
+.cls-10{fill:#999;}
+.cls-11{fill:#f15b43;}
+.cls-12,.cls-13,.cls-14{fill:#f4d03e;}
+.cls-12{opacity:0.75;}
+.cls-13{opacity:0.5;}
+.cls-15{fill:#27b999;}
+.cls-16{fill:none;}
+.cls-17{fill:#35495e;}
+.cls-18{fill:#e6e6e6;}
+.cls-19{fill:#677b8c;}

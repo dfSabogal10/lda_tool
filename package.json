@@ -12,6 +12,8 @@
     "react-bootstrap": "^0.30.8",
     "react-datepicker": "^0.44.0",
     "react-dom": "^15.4.2",
+    "react-equalizer": "^1.2.0",
+    "react-radioimg": "^1.1.0",
     "react-select": "^1.0.0-rc.3"
   }
 }
