@@ -117,6 +117,7 @@ export default class App extends Component {
     });
   };
 
+  //El render esta bastante grande falta dividir un poco mas en componentes para que sea más entendible
   render() {
     return (
       <div>
